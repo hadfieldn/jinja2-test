@@ -1,10 +1,14 @@
-## Installation
+### Installation
 ```bash
 pip3 install jinja2
+```
+
+### Usage
+```bash
 python3 jinja2-test.py
 ```
 
-
+### Notes
 The templates in this project include variables to be replaced by [SendGrid](https://github.com/sendgrid/sendgrid-python). E.g.:
 
 ```python
