@@ -1,0 +1,26 @@
+{%- extends 'email-layout.txt' -%}
+{#- Important! Whitespace and newlines matter in this file! -#}
+{%- block content -%}
+%fromname% %action% {% if not isPageComment %}your comment on {% endif %}{{page.title}}:
+
+{% if newComment.content %}{{newComment.content}}{% endif %}
+
+{% if newComment.rating -%}
+{%- for rating in ratings -%}{% if rating.value %}{% if rating.label == 'average'%}
+  Tab: {{rating.value|round}}%
+{% else %}  {{rating.label|title}}: {{rating.value|round}}%
+{% endif -%}
+{% endif -%}
+{%- endfor -%}
+{%- endif -%}
+{% if newComment.rating %}
+
+Your current World Table Score is {{origCommentUser.score.overall|round}}.
+{% endif %}
+
+View comment: {{newCommentPermalink}}
+{% if not isPageComment and origComment.content %}
+Your original comment:
+{{origComment.content}}
+{% endif -%}
+{%- endblock -%}

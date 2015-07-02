@@ -1,0 +1,5 @@
+{% block content %}{% endblock %}
+
+
+
+To discontinue notifications from The World Table, send an e-mail to unsubscribe@worldtable.co

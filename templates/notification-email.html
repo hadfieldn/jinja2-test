@@ -1,0 +1,37 @@
+<!-- jshint ignore: start -->
+{% extends 'email-layout.html' %}
+{%- block content -%}
+  <p>
+    {% if isPageComment %}
+      %fromname% <a href="{{newCommentPermalink}}">%action% {{page.title}}</a>:
+    {% else %}
+      %fromname% <a href="{{newCommentPermalink}}">%action% your comment<a> on <a href="{{pagePermalink}}">{{page.title}}</a>:
+    {% endif %}
+  </p>
+  <div style="background-color: #eeeeee; padding: 6px 12px">
+    {% if newComment.content %}
+      <p>{{newComment.content}}</p>
+    {% endif %}
+    {% if newComment.rating %}
+      <p style="font-style: italic">
+        {% for rating in ratings %}
+          {% if rating.value %}
+            {% if rating.label != 'average'%}{{rating.label|title}}: {{rating.value|round}}%<br/>
+            {% else %}<b>Tab: {{rating.value|round}}%</b><br/>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </p>
+    {% endif %}
+  </div>
+  {% if newComment.rating %}
+    <p>Your current World Table Score is <b>{{origCommentUser.score.overall|round}}</b>.</p>
+  {% endif %}
+  {% if not isPageComment and origComment.content %}
+    <p>&nbsp;</p>
+    <p>Your <a href="{{origCommentPermalink}}">original comment</a>:</p>
+    <div style="background-color: #fdf8ec; padding: 6px 12px">
+      <p>{{origComment.content}}</p>
+    </div>
+  {% endif %}
+{%- endblock -%}
