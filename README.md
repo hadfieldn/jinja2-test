@@ -11,6 +11,6 @@ The templates in this project include variables to be replaced by [SendGrid](htt
 message = sendgrid.Mail()
 message.addSubstitution('%%toname%%', args['origCommentUser']['fullName']);
 message.addSubstitution('%%fromname%%', args['newCommentUser']['fullName']);
-message.addSubstitution('comment', '%%postingtype%%' if args['newComment']['replyToCommentId'] else 'article');
+message.addSubstitution('%%postingtype%%', 'comment' if args['newComment']['replyToCommentId'] else 'article');
 message.addSubstitution('%%action%%', 'replied to' if args['newComment']['content'] else 'rated');
 ```
